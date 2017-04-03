@@ -22,12 +22,32 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
+
+	void SetIndex(int NewIndex);
+	
+	
+	int GetIndex();
+
+	void SetOwnerGrid(class AMemoryMatrixGrid* Grid);
+
 	
 
 private:
 
+	UPROPERTY(EditAnywhere)
+		class UPaperSpriteComponent* Sprite;
+
+	UPROPERTY(EditAnywhere)
+		class UPaperSprite* SpriteOff;
+
+
 	UFUNCTION()
 		void OnTouchBegin(ETouchIndex::Type Type, UPrimitiveComponent* TouchedComponent);
 
+	class MemoryMatrixGrid* OwnerGrid;
+
+
+	int Index;
+	FTimerHandle ShowClicked;
 	
 };

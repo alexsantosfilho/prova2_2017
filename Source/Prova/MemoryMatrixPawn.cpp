@@ -12,7 +12,7 @@ AMemoryMatrixPawn::AMemoryMatrixPawn()
 
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	Camera->ProjectionMode = ECameraProjectionMode::Orthographic;
-	Camera->OrthoWidth = 2048.0f;
+	Camera->OrthoWidth = 4019.0f;
 	Camera->SetupAttachment(RootComponent);
 
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
