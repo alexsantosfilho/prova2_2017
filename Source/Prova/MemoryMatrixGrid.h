@@ -26,10 +26,12 @@ public:
 private:
 
 	UPROPERTY(EditAnywhere)
+	
 		USceneComponent* Root;
+	
 	TSubclassOf<class UUserWidget> GameOverWidget;
 
-	TSubclassOf<class AMemoryMatrix> OSprite;
+	TSubclassOf<class AMemoryMatrix> Matrix;
 
 	int Index;
 

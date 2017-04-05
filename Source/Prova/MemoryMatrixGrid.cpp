@@ -1,6 +1,7 @@
 // Fill out your copyright notice in the Description page of Project Settings.
 
 #include "Prova.h"
+#include "MemoryMatrix.h"
 #include "MemoryMatrixGrid.h"
 #include "MemoryMatrixPawn.h"
 #include "Blueprint/UserWidget.h"
@@ -22,11 +23,12 @@ AMemoryMatrixGrid::AMemoryMatrixGrid()
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	RootComponent = Root;
 
-	ConstructorHelpers::FObjectFinder<UClass> OBP(TEXT("Blueprint'/Game/blueprint/MyMemoryMatrix.MyMemoryMatrix'"));
-
+	ConstructorHelpers::FObjectFinder<UClass> OBP(TEXT("Blueprint'/Game/blueprint/MyMemoryMatrix.MyMemoryMatrix_C'"));
+	UE_LOG(LogTemp, Warning, TEXT("construtor"));
 
 	if (OBP.Succeeded()) {
-		OSprite = Cast<UClass>(OBP.Object);
+		Matrix = Cast<UClass>(OBP.Object);
+		UE_LOG(LogTemp, Warning, TEXT("Succeeded"));
 	}
 
 }
@@ -41,7 +43,15 @@ void AMemoryMatrixGrid::BeginPlay()
 	if (World) {
 		FActorSpawnParameters SpawnParameters;
 
-		//AMemoryMatrix* P1 = World->SpawnActor<AMemoryMatrix>(OSprite, FVector(0.0f, 0.0f, 0.0f), FRotator::ZeroRotator, SpawnParameters);
+		AMemoryMatrix* P1 = World->SpawnActor<AMemoryMatrix>(Matrix, FVector(1000.0f, 0.0f, 0.0f), FRotator::ZeroRotator, SpawnParameters);
+
+		if (P1 != nullptr) {
+
+			UE_LOG(LogTemp, Warning, TEXT("if do begin play P1"));
+
+		}
+		UE_LOG(LogTemp, Warning, TEXT("if do begin play"));
+
 		//AMemoryMatrix* P2 = World->SpawnActor<AMemoryMatrix>(OSprite, FVector(250.0f, 0.0f, 0.0f), FRotator::ZeroRotator, SpawnParameters);
 		//AMemoryMatrix* P3 = World->SpawnActor<AMemoryMatrix>(OSprite, FVector(0.0f, 0.0f, 250.0f), FRotator::ZeroRotator, SpawnParameters);
 		/*
