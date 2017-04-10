@@ -18,6 +18,8 @@ public:
 	void SetFreeze(bool NewFreeze);
 	bool GetFreeze();
 	bool Verificar(class AMatrixGame* Click);
+	void GameOver();
+
 
 protected:
 	// Called when the game starts or when spawned
@@ -27,10 +29,8 @@ public:
 	// Called every frame
 	virtual void Tick(float DeltaTime) override;
 
-	float X = 0.0f;
-	float Z = 0.0f;
+	
 private:
-	int FaseCont = 1;
 
 	UPROPERTY(EditAnywhere)
 	
@@ -40,12 +40,10 @@ private:
 
 	TSubclassOf<class AMemoryMatrix> Um;
 
-	int MatrixCol = 3;
-	int MatrixRow = 3;
-//	TArray<int> Um;
 
 
-	int Index =10;
+
+	int Index;
 
 	TArray<class AMemoryMatrix*> Matrix;
 	

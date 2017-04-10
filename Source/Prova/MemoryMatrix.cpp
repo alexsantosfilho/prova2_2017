@@ -16,6 +16,9 @@ AMemoryMatrix::AMemoryMatrix()
 	Sprite->SetSprite(SpriteOff);
 	Sprite->OnInputTouchBegin.AddDynamic(this, &AMemoryMatrix::OnTouchBegin);
 	RootComponent = Sprite;
+
+
+
 }
 
 // Called when the game starts or when spawned
@@ -36,9 +39,25 @@ void AMemoryMatrix::Tick(float DeltaTime)
 void AMemoryMatrix::OnTouchBegin(ETouchIndex::Type Type, UPrimitiveComponent * TouchedComponent)
 {
 
+	ChangeSprite();
+	if (!OwnerGrid->GetFreeze()) {
+		if (OwnerGrid->Verificar(this)) {
+			Sprite->SetSprite(SpriteOn);
+			OwnerGrid->SetFreeze(true);
+			UWorld* World = GetWorld();
+			if (World) {
+				GetWorldTimerManager().SetTimer(ShowClicked, this,
+					&AMemoryMatrix::WaitColorOn, 0.5f, true);
+			}
+		}
+		else {
+			UE_LOG(LogTemp, Warning, TEXT("GAME OVER!"));
+			OwnerGrid->GameOver();
+		}
+	}
 
 	UE_LOG(LogTemp, Warning, TEXT("clicou"));
-
+	
 }
 
 
@@ -59,10 +78,22 @@ void AMemoryMatrix::SetOwnerGrid(class AMemoryMatrixGrid* Grid) {
 }
 
 void AMemoryMatrix::ChangeSprite() {
-	if (Sprite->GetSprite() == FirstSprite) {
+	
+	UWorld* World = GetWorld();
+	
+	if (Sprite->GetSprite() == FirstSprite && World) {
 		Sprite->SetSprite(ShineSprite);
+		
+		GetWorldTimerManager().SetTimer(ShowClicked, this,
+			&AMemoryMatrix::ChangeSprite, 0.5f, true);
 	}
 	else {
 		Sprite->SetSprite(FirstSprite);
 	}
+}
+
+void AMemoryMatrix::WaitColorOn() {
+	Sprite->SetSprite(SpriteOff);
+	OwnerGrid->SetFreeze(false);
+	GetWorldTimerManager().ClearTimer(ShowClicked);
 }

@@ -44,17 +44,17 @@ void AMemoryMatrixGrid::BeginPlay()
 
 		//AMemoryMatrix* P1 = World->SpawnActor<AMemoryMatrix>(Um, FVector(1000.0f, 0.0f, 000.0f), FRotator::ZeroRotator, SpawnParameters);
 	
-		for (int i = 1; i < ((MatrixCol*MatrixRow) + 1); i++) {
+		//for (int i = 1; i < ((MatrixCol*MatrixRow) + 1); i++) {
 			FActorSpawnParameters SpawnParameters;
-			AMemoryMatrix* P1 = World->SpawnActor<AMemoryMatrix>(Um, FVector(X, 0, Z), FRotator::ZeroRotator, SpawnParameters);
-			AMemoryMatrix* P2 = World->SpawnActor<AMemoryMatrix>(Um, FVector(X, 0, Z), FRotator::ZeroRotator, SpawnParameters);
-			AMemoryMatrix* P3 = World->SpawnActor<AMemoryMatrix>(Um, FVector(X, 0, Z), FRotator::ZeroRotator, SpawnParameters);
-			AMemoryMatrix* P4 = World->SpawnActor<AMemoryMatrix>(Um, FVector(X, 0, Z), FRotator::ZeroRotator, SpawnParameters);
-			AMemoryMatrix* P5 = World->SpawnActor<AMemoryMatrix>(Um, FVector(X, 0, Z), FRotator::ZeroRotator, SpawnParameters);
-			AMemoryMatrix* P6 = World->SpawnActor<AMemoryMatrix>(Um, FVector(X, 0, Z), FRotator::ZeroRotator, SpawnParameters);
-			AMemoryMatrix* P7 = World->SpawnActor<AMemoryMatrix>(Um, FVector(X, 0, Z), FRotator::ZeroRotator, SpawnParameters);
-			AMemoryMatrix* P8 = World->SpawnActor<AMemoryMatrix>(Um, FVector(X, 0, Z), FRotator::ZeroRotator, SpawnParameters);
-			AMemoryMatrix* P9 = World->SpawnActor<AMemoryMatrix>(Um, FVector(X, 0, Z), FRotator::ZeroRotator, SpawnParameters);
+			AMemoryMatrix* P1 = World->SpawnActor<AMemoryMatrix>(Um, FVector(1000.0f, 0.0f, 0.0f), FRotator::ZeroRotator, SpawnParameters);
+			AMemoryMatrix* P2 = World->SpawnActor<AMemoryMatrix>(Um, FVector(1000.0f, 0.0f, 1000.0f), FRotator::ZeroRotator, SpawnParameters);
+			AMemoryMatrix* P3 = World->SpawnActor<AMemoryMatrix>(Um, FVector(1000.0f, 0.0f, 2000.0f), FRotator::ZeroRotator, SpawnParameters);
+			AMemoryMatrix* P4 = World->SpawnActor<AMemoryMatrix>(Um, FVector(-1000.f, 0.0f, 0.0f), FRotator::ZeroRotator, SpawnParameters);
+			AMemoryMatrix* P5 = World->SpawnActor<AMemoryMatrix>(Um, FVector(-1000.0f, 0.0f, 1000.0f), FRotator::ZeroRotator, SpawnParameters);
+			AMemoryMatrix* P6 = World->SpawnActor<AMemoryMatrix>(Um, FVector(-1000.0f, 0.0f, 2000.0f), FRotator::ZeroRotator, SpawnParameters);
+			AMemoryMatrix* P7 = World->SpawnActor<AMemoryMatrix>(Um, FVector(0, 0.0f, 2000.0f), FRotator::ZeroRotator, SpawnParameters);
+			AMemoryMatrix* P8 = World->SpawnActor<AMemoryMatrix>(Um, FVector(0, 0.0f, 1000.0f), FRotator::ZeroRotator, SpawnParameters);
+			AMemoryMatrix* P9 = World->SpawnActor<AMemoryMatrix>(Um, FVector(0, 0.0f, -0.f), FRotator::ZeroRotator, SpawnParameters);
 
 			
 
@@ -83,15 +83,15 @@ void AMemoryMatrixGrid::BeginPlay()
 
 
 
-			X += 1000.0f;
+			//X += 1000.0f;
 
 
 
-			if (i % MatrixCol == 0) {
-				Z -= 1000.0f;
-				X = 0;
-			}
-		}
+			//if (i % MatrixCol == 0) {
+			//	Z -= 1000.0f;
+			//	X = 0;
+			//}
+		//}
 		
 		/*	AMemoryMatrix* P2 = World->SpawnActor<AMemoryMatrix>(Um, FVector(1000.0f, 0.0f, 1000.0f), FRotator::ZeroRotator, SpawnParameters);
 		AMemoryMatrix* P3 = World->SpawnActor<AMemoryMatrix>(Um, FVector(1000.0f, 0.0f, 2000.f), FRotator::ZeroRotator, SpawnParameters);
@@ -145,8 +145,9 @@ void AMemoryMatrixGrid::BeginPlay()
 		Matrix.Add(P6);
 
 		*/
+			Pisca();
+
 	}
-	Pisca();
 	
 }
 
@@ -168,16 +169,14 @@ bool AMemoryMatrixGrid::GetFreeze() {
 
 void AMemoryMatrixGrid::Pisca() {
 
-	int ActualSequence = Sequence[Index];
-	Matrix[ActualSequence]->ChangeSprite();
-	FaseCont++;
+   
 
-	if (FaseCont % 2 == 0) {
-		MatrixCol = MatrixCol + 1;
-	}
-	else {
-		MatrixRow = MatrixRow + 1;
-	}
+	//if (FaseCont % 2 == 0) {
+	//	MatrixCol = MatrixCol + 1;
+	//}
+	//else {
+	//	MatrixRow = MatrixRow + 1;
+	//}
 
 	int Random = FMath::RandRange(0, 2);
 	int Random2 = FMath::RandRange(3, 5);
@@ -192,7 +191,9 @@ void AMemoryMatrixGrid::Pisca() {
 		Index = 0;
 		bLight = false;
 		NumOfClicks = 0;
-		bFreeze = true;
+		//bFreeze = true;
+		UE_LOG(LogTemp, Warning, TEXT("Random  %d "));
+
 	}
 	if (Random2) {
 
@@ -200,7 +201,9 @@ void AMemoryMatrixGrid::Pisca() {
 		Index = 0;
 		bLight = false;
 		NumOfClicks = 0;
-		bFreeze = true;
+		//bFreeze = true;
+		UE_LOG(LogTemp, Warning, TEXT("Random2  %d"));
+
 	}
 	if (Random3) {
 
@@ -208,17 +211,29 @@ void AMemoryMatrixGrid::Pisca() {
 		Index = 0;
 		bLight = false;
 		NumOfClicks = 0;
-		bFreeze = true;
+		//bFreeze = true;
+		UE_LOG(LogTemp, Warning, TEXT("Random3  %d"));
+
 	}
 
 
 	UWorld* World = GetWorld();
 	if (World) {
-	//GetWorldTimerManager().SetTimer(MCard, this, &AMemoryMatrixGrid::Show, 1.0f, true);
+	GetWorldTimerManager().SetTimer(MCard, this, &AMemoryMatrixGrid::Show, 1.0f, true);
 		//Show();
 		Random++;
 
 	}
+	
+
+
+}
+
+
+
+void AMemoryMatrixGrid::Show() {
+	int ActualSequence = Sequence[Index];
+	Matrix[ActualSequence]->ChangeSprite();
 	if (bLight) {
 		bLight = false;
 		GetWorldTimerManager().ClearTimer(MCard);
@@ -235,14 +250,6 @@ void AMemoryMatrixGrid::Pisca() {
 		GetWorldTimerManager().ClearTimer(MCard);
 		GetWorldTimerManager().SetTimer(MCard, this, &AMemoryMatrixGrid::Show, 1.0f, true);
 	}
-
-
-
-}
-
-
-
-void AMemoryMatrixGrid::Show() {
 
 
 	
@@ -281,4 +288,18 @@ void AMemoryMatrixGrid::OnOverlapBegin(UPrimitiveComponent* OverlappedComp, AAct
 	}
 }
 
+
+void AMemoryMatrixGrid::GameOver() {
+	UWorld* World = GetWorld();
+	if (World) {
+		APlayerController* PlayerController = UGameplayStatics::GetPlayerController(World, 0);
+		if (PlayerController && GameOverWidget != NULL) {
+			PlayerController->SetPause(true);
+			UUserWidget* UserW = UWidgetBlueprintLibrary::Create(World, GameOverWidget, PlayerController);
+			if (UserW) {
+				UserW->AddToViewport();
+			}
+		}
+	}
+}
 

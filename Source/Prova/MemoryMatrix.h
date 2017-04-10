@@ -41,6 +41,9 @@ private:
 
 	UPROPERTY(EditAnywhere)
 		class UPaperSprite* SpriteOff;
+	UPROPERTY(EditAnywhere)
+		class UPaperSprite* SpriteOn;
+
 
 
 	UFUNCTION()
@@ -56,4 +59,7 @@ private:
 	int Index;
 	FTimerHandle ShowClicked;
 	
+
+	void WaitColorOn();
+
 };
