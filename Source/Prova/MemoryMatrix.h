@@ -30,6 +30,8 @@ public:
 
 	void SetOwnerGrid(class AMemoryMatrixGrid* Grid);
 
+	void ChangeSprite();
+
 	
 
 private:
@@ -44,8 +46,12 @@ private:
 	UFUNCTION()
 		void OnTouchBegin(ETouchIndex::Type Type, UPrimitiveComponent* TouchedComponent);
 
-	class MemoryMatrixGrid* OwnerGrid;
+	class AMemoryMatrixGrid* OwnerGrid;
 
+	UPROPERTY(EditAnywhere)
+		class UPaperSprite* FirstSprite;
+	UPROPERTY(EditAnywhere)
+		class UPaperSprite* ShineSprite;
 
 	int Index;
 	FTimerHandle ShowClicked;

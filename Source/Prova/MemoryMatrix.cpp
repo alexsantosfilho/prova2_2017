@@ -4,6 +4,7 @@
 #include "MemoryMatrix.h"
 #include "PaperSpriteComponent.h"
 #include "PaperSprite.h"
+#include "MemoryMatrixGrid.h"
 
 // Sets default values
 AMemoryMatrix::AMemoryMatrix()
@@ -53,9 +54,15 @@ int AMemoryMatrix::GetIndex()
 	return Index;
 }
 
-void AMemoryMatrix::SetOwnerGrid(AMemoryMatrixGrid * Grid)
-{
+void AMemoryMatrix::SetOwnerGrid(class AMemoryMatrixGrid* Grid) {
+	OwnerGrid = Grid;
+}
 
-	//OwnerGrid = Grid;
-
+void AMemoryMatrix::ChangeSprite() {
+	if (Sprite->GetSprite() == FirstSprite) {
+		Sprite->SetSprite(ShineSprite);
+	}
+	else {
+		Sprite->SetSprite(FirstSprite);
+	}
 }

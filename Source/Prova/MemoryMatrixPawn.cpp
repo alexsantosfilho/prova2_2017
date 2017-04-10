@@ -12,7 +12,7 @@ AMemoryMatrixPawn::AMemoryMatrixPawn()
 
 	Camera = CreateDefaultSubobject<UCameraComponent>(TEXT("Camera"));
 	Camera->ProjectionMode = ECameraProjectionMode::Orthographic;
-	Camera->OrthoWidth = 4019.0f;
+	Camera->OrthoWidth = 10019.0f;
 	Camera->SetupAttachment(RootComponent);
 
 	AutoPossessPlayer = EAutoReceiveInput::Player0;
@@ -23,7 +23,8 @@ AMemoryMatrixPawn::AMemoryMatrixPawn()
 void AMemoryMatrixPawn::BeginPlay()
 {
 	Super::BeginPlay();
-	
+	Ponto = 0;
+
 }
 
 // Called every frame
@@ -40,3 +41,10 @@ void AMemoryMatrixPawn::SetupPlayerInputComponent(UInputComponent* PlayerInputCo
 
 }
 
+void AMemoryMatrixPawn::SetPonto(int NewPonto) {
+	Ponto = NewPonto;
+}
+
+int AMemoryMatrixPawn::GetPonto() {
+	return Ponto;
+}
