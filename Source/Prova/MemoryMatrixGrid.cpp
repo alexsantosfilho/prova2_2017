@@ -116,7 +116,7 @@ bool AMemoryMatrixGrid::Verificar(AMemoryMatrix * Click)
 		if (NumOfClicks == Sequence.Num()) {
 			UWorld* World = GetWorld();
 			if (World) {
-				APawn* MPawn = UGameplayStatics::GetPlayerController(World, 0)->GetPawn();
+				APawn* MPawn = UGameplayStatics::GetPlayerController(World, 0)->GetControlledPawn();
 				AMemoryMatrixPawn* MatrixPawn = Cast<AMemoryMatrixPawn>(MPawn);
 				MatrixPawn->SetPonto(MatrixPawn->GetPonto() + 100);
 				UGameplayStatics::OpenLevel(World, "Mapa2");
@@ -166,33 +166,17 @@ void AMemoryMatrixGrid::Pisca() {
 
 
 	//if (!bTurned) {
-	if (Random ) {
+	if (Random) {
 		Sequence.Add(Random);
-		Index = 0;
-		bLight = false;
-		NumOfClicks = 0;
-		bFreeze = true;
-		UE_LOG(LogTemp, Warning, TEXT("Random"));
-
 		
 	}if (Random2) {
-		Index = 0;
-		bLight = false;
-		NumOfClicks = 0;
-		bFreeze = true;
-		Sequence.Add(Random2);
-		UE_LOG(LogTemp, Warning, TEXT("Random2"));
 
+		Sequence.Add(Random2);
 		
 	}
 	if (Random3) {
-		Index = 0;
-		bLight = false;
-		NumOfClicks = 0;
-		bFreeze = true;
-		Sequence.Add(Random3);
-		UE_LOG(LogTemp, Warning, TEXT("Random3"));
 
+		Sequence.Add(Random3);
 		
 	}
 
