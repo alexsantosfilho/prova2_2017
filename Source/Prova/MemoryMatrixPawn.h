@@ -26,8 +26,10 @@ public:
 	virtual void SetupPlayerInputComponent(class UInputComponent* PlayerInputComponent) override;
 
 	void SetPonto(int NewPonto);
+	
+	
 	UFUNCTION(BluePrintCallable, Category = "Ponto")
-		int GetPonto();
+	int GetPonto();
 	
 private:
 
@@ -35,5 +37,5 @@ private:
 		UCameraComponent* Camera;
 	
 	UPROPERTY(EditAnywhere)
-		int Ponto;
+		int Ponto = 100;
 };

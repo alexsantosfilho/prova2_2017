@@ -17,8 +17,7 @@ public:
 	bool Verificar(class AMemoryMatrix* Click);
 	void SetFreeze(bool NewFreeze);
 	bool GetFreeze();
-	bool Verificar(class AMatrixGame* Click);
-	void GameOver();
+
 
 
 protected:
@@ -33,32 +32,24 @@ public:
 private:
 
 	UPROPERTY(EditAnywhere)
-	
 		USceneComponent* Root;
-	
-	TSubclassOf<class UUserWidget> GameOverWidget;
+	/*UPROPERTY(EditAnywhere)
+	bool bTurned;*/
 
 	TSubclassOf<class AMemoryMatrix> Um;
 
 
-
-
-	int Index;
-
 	TArray<class AMemoryMatrix*> Matrix;
-	
 	TArray<int> Sequence;
 
-	void Pisca();
-
+	int Index;
+	bool bFreeze;
 	bool bLight;
-
+	FTimerHandle MCard;
 	int NumOfClicks;
 
-	bool bFreeze;
 
-	FTimerHandle MCard;
-
+	void Pisca();
 	void Show();
 
 	UFUNCTION()

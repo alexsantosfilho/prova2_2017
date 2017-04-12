@@ -30,9 +30,11 @@ public:
 
 	void SetOwnerGrid(class AMemoryMatrixGrid* Grid);
 
+
+
 	void ChangeSprite();
 
-	
+
 
 private:
 
@@ -44,6 +46,7 @@ private:
 	UPROPERTY(EditAnywhere)
 		class UPaperSprite* SpriteOn;
 
+	void WaitPls();
 
 
 	UFUNCTION()
@@ -53,13 +56,14 @@ private:
 
 	UPROPERTY(EditAnywhere)
 		class UPaperSprite* FirstSprite;
+
 	UPROPERTY(EditAnywhere)
 		class UPaperSprite* ShineSprite;
 
 	int Index;
 	FTimerHandle ShowClicked;
 	
+	TSubclassOf<class UUserWidget> GameOver;
 
-	void WaitColorOn();
 
 };

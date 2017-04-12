@@ -23,7 +23,6 @@ AMemoryMatrixPawn::AMemoryMatrixPawn()
 void AMemoryMatrixPawn::BeginPlay()
 {
 	Super::BeginPlay();
-	Ponto = 0;
 
 }
 
