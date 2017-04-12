@@ -31,6 +31,9 @@ public:
 	
 private:
 
+	TSubclassOf<class UUserWidget> GameOver;
+
+
 	UPROPERTY(EditAnywhere)
 		USceneComponent* Root;
 	/*UPROPERTY(EditAnywhere)

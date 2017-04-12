@@ -25,6 +25,11 @@ AMemoryMatrixGrid::AMemoryMatrixGrid()
 	Root = CreateDefaultSubobject<USceneComponent>(TEXT("Root"));
 	RootComponent = Root;
 
+	ConstructorHelpers::FClassFinder<UUserWidget> Widget(TEXT("WidgetBlueprint'/Game/blueprint/umg/GameOver.GameOver_C'"));
+	if (Widget.Succeeded()) {
+		GameOver = Widget.Class;
+	}
+
 	ConstructorHelpers::FObjectFinder<UClass> OBP(TEXT("Blueprint'/Game/blueprint/MyMemoryMatrix.MyMemoryMatrix_C'"));
 	UE_LOG(LogTemp, Warning, TEXT("construtor"));
 
@@ -111,7 +116,7 @@ bool AMemoryMatrixGrid::Verificar(AMemoryMatrix * Click)
 		if (NumOfClicks == Sequence.Num()) {
 			UWorld* World = GetWorld();
 			if (World) {
-				APawn* MPawn = UGameplayStatics::GetPlayerController(World, 0)->GetControlledPawn();
+				APawn* MPawn = UGameplayStatics::GetPlayerController(World, 0)->GetPawn();
 				AMemoryMatrixPawn* MatrixPawn = Cast<AMemoryMatrixPawn>(MPawn);
 				MatrixPawn->SetPonto(MatrixPawn->GetPonto() + 100);
 				UGameplayStatics::OpenLevel(World, "Mapa2");
@@ -119,9 +124,29 @@ bool AMemoryMatrixGrid::Verificar(AMemoryMatrix * Click)
 
 			}
 		}
+
 		return true;
 	}
+	NumOfClicks = 1;
+	if (NumOfClicks <= Sequence.Num()) {
+		UWorld* World = GetWorld();
+		if (World) {
 
+			APlayerController* PlayerController = UGameplayStatics::GetPlayerController(World, 0);
+			if (PlayerController && GameOver != NULL) {
+				PlayerController->SetPause(true);
+				UUserWidget* UserW = UWidgetBlueprintLibrary::Create(World, GameOver, PlayerController);
+				if (UserW) {
+					UserW->AddToViewport();
+				}
+			}
+			UE_LOG(LogTemp, Warning, TEXT("NumOfClicks != Sequence.Num!"));
+			//UGameplayStatics::OpenLevel(World, "Mapa2");
+
+			// open o level 				UGameplayStatics::OpenLevel(World, "Mapa2");
+
+		}
+	}
 
 	return false;
 }
@@ -135,23 +160,39 @@ bool AMemoryMatrixGrid::GetFreeze() {
 }
 
 void AMemoryMatrixGrid::Pisca() {
-	int Random = FMath::RandRange(0, 2);
+	int Random = FMath::RandRange(1, 2);
 	int Random2 = FMath::RandRange(3, 5);
 	int Random3 = FMath::RandRange(6, 8);
 
 
 	//if (!bTurned) {
-	if (Random) {
+	if (Random ) {
 		Sequence.Add(Random);
+		Index = 0;
+		bLight = false;
+		NumOfClicks = 0;
+		bFreeze = true;
+		UE_LOG(LogTemp, Warning, TEXT("Random"));
+
 		
 	}if (Random2) {
-
+		Index = 0;
+		bLight = false;
+		NumOfClicks = 0;
+		bFreeze = true;
 		Sequence.Add(Random2);
+		UE_LOG(LogTemp, Warning, TEXT("Random2"));
+
 		
 	}
 	if (Random3) {
-
+		Index = 0;
+		bLight = false;
+		NumOfClicks = 0;
+		bFreeze = true;
 		Sequence.Add(Random3);
+		UE_LOG(LogTemp, Warning, TEXT("Random3"));
+
 		
 	}
 
