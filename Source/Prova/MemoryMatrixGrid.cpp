@@ -159,7 +159,7 @@ void AMemoryMatrixGrid::Pisca() {
 	UWorld* World = GetWorld();
 	if (World) {
 		//Show();
-		GetWorldTimerManager().SetTimer(MCard, this, &AMGrid::Show, 1.0f, true);
+		GetWorldTimerManager().SetTimer(MCard, this, &AMemoryMatrixGrid::Show, 1.0f, true);
 		Random++;
 	}
 
